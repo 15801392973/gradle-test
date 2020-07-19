@@ -1,0 +1,6 @@
+rootProject.name = 'gradle-test'
+
+include 'common'
+include 'proto'
+include 'web'
+

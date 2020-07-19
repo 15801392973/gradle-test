@@ -1,0 +1,52 @@
+group 'com.fanshuai'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.8
+
+buildscript {
+    repositories {
+        mavenLocal()
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+    }
+
+    ext {
+        springBootVersion = '2.0.4.RELEASE'
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+    }
+
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            snapshotRepository (url: 'http://maven.nexus.com/nexus/content/repositories/snapshots/')
+
+            repository (url: 'http://maven.nexus.com/nexus/content/repositories/releases/')
+
+            pom.groupId = 'com.fanshuai'
+            pom.version = '1.1.0'
+            pom.artifactId = 'gradle-test'
+        }
+    }
+}
+
+
+

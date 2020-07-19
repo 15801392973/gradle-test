@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "com.fanshuai.proto";
+
+message Int32 {
+    int32 value = 1;
+}
+
+service HelloService {
+    rpc hello(Int32) returns (Int32) {}
+}
